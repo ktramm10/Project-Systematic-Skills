@@ -1,0 +1,64 @@
+.hero {
+    position: relative;
+    width: 100%;
+    height: 800px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar {
+    display: flex;
+}
+
+.search-bar input {
+    width: 400px;
+    padding: 12px;
+    font-size: 16px;
+}
+
+.search-bar button {
+    padding: 12px 20px;
+    cursor: pointer;
+}
+
+.hero-nav {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+.hero-heading {
+    gap: 30px;
+    padding: 15px 30px;
+    background-color: #222;
+}
+
+.rec-course {
+    margin-top: 12px;
+    border: 5px solid #222;
+}
+
+h1 {
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+}
