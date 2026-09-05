@@ -66,3 +66,19 @@ header {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+.page-header-title {
+    color: white;
+    font-weight: bold;
+    font-size: 32px;
+
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0;
+}
+
+.page-header-title p {
+    margin: 0;
+}

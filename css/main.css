@@ -67,8 +67,14 @@
     color: white;
     font-weight: bold;
     font-size: 32px;
-    margin-left: 30%;
-    
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-header-title p {
+    margin: 0;
 }
 
 .hero-text-container {
@@ -118,4 +124,12 @@
 
 .content-list li + li {
     margin-top: 8px;
+}
+
+.lineage-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
