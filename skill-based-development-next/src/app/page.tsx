@@ -1,6 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
+import prisma from "@/lib/prisma";
 
-export default function Home() {
+async function getCourses() {
+  return await prisma.course.findMany();
+}
+
+export default async function Home() {
+  const courses = await getCourses();
   return (
   <main>
   <section className="hero">
@@ -38,39 +45,15 @@ export default function Home() {
     </div>
 
     <nav className="hero-nav">
-      <div className="rec-course">
-        <a href="#">
-          <Image
-            src="/content/images/thumbnail-placeholder-image.png"
-            alt="thumbnail"
-            width={320}
-            height={180}
-            priority
-          />
-        </a>
-      </div>
-
-      <div className="rec-course">
-        <a href="#">
-          <Image
-            src="/content/images/thumbnail-placeholder-image.png"
-            alt="thumbnail"
-            width={320}
-            height={180}
-          />
-        </a>
-      </div>
-
-      <div className="rec-course">
-        <a href="#">
-          <Image
-            src="/content/images/thumbnail-placeholder-image.png"
-            alt="thumbnail"
-            width={320}
-            height={180}
-          />
-        </a>
-      </div>
+      {courses.map((course) => (
+        <div key={course.id} className="content-card">
+          <img src={course.thumbnail} alt={course.name} />
+          <h2>{course.name}</h2>
+          <p>{course.description}</p>
+          <p>${(course.priceCents / 100).toFixed(2)}</p>
+          <Link href={`/courses/${course.id}`}>View Course</Link>
+        </div>
+      ))}
     </nav>
   </section>
 </main>
