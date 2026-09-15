@@ -11,6 +11,9 @@ export default function HeaderDropdowns() {
   function toggleDropdown(name: DropdownName) {
         setOpenDropdown(openDropdown === name ? null : name);
     }
+    function clearDropdown() {
+        setOpenDropdown(null);
+    }
 
     return (
         <nav className="header-nav">
@@ -21,8 +24,12 @@ export default function HeaderDropdowns() {
 
         {openDropdown === "courses" && (
           <div className="dropdown-content">
-            <Link href="/courses/fundamentals">Fundamentals</Link>
-            <Link href="/courses/categories">Categories</Link>
+            <Link href="/fundamentals" onClick={clearDropdown}>
+              Fundamentals
+            </Link>
+            <Link href="/categories" onClick={clearDropdown}>
+              Categories
+            </Link>
           </div>
         )}
       </div>
@@ -34,8 +41,12 @@ export default function HeaderDropdowns() {
 
         {openDropdown === "about" && (
           <div className="dropdown-content">
-            <Link href="/about/lineage">Lineage</Link>
-            <Link href="/goals">Goals</Link>
+            <Link href="/lineage" onClick={clearDropdown}>
+              Lineage
+            </Link>
+            <Link href="/goals" onClick={clearDropdown}>
+              Goals
+            </Link>
           </div>
         )}
       </div>
