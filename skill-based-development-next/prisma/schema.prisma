@@ -20,4 +20,40 @@ model Course {
   thumbnail   String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  chapters Chapter[]
+}
+
+model Chapter {
+  id       Int    @id @default(autoincrement())
+  title    String
+  position Int
+
+  courseId Int
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  sections Section[]
+}
+
+model Section {
+  id       Int    @id @default(autoincrement())
+  title    String
+  position Int
+
+  chapterId Int
+  Chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  lessons Lesson[]
+}
+
+model Lesson {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String?
+  videoUrl    String
+  duration    Int?
+  position    Int
+
+  sectionId Int
+  section   Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
 }
