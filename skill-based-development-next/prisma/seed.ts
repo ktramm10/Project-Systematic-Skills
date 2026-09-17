@@ -32,6 +32,15 @@ const courses = [
       "Master the basics of closed guard in Brazilian Jiu-Jitsu, focusing on control, sweeps, and submissions.",
     thumbnail: "/content/images/courses/fundamentals-of-closed-guard.jfif",
   },
+  {
+    id: 3,
+    name: "Fundamentals of Half Guard",
+    priceCents: 2999,
+    description:
+      "Explore the essential techniques of half guard in Brazilian Jiu-Jitsu, including sweeps, submissions, and positional control.",
+    thumbnail: "/content/images/courses/fundamentals-of-half-guard.jfif",
+    
+  }
 ];
 
 async function main() {
