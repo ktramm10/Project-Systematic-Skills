@@ -13,42 +13,52 @@ datasource db {
 }
 
 model Course {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   name        String
+  slug        String    @unique
   priceCents  Int
   description String
   thumbnail   String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 
-  chapters Chapter[]
+  chapters    Chapter[]
 }
 
 model Chapter {
   id       Int    @id @default(autoincrement())
   title    String
+  slug     String
   position Int
 
   courseId Int
   course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   sections Section[]
+
+  @@unique([courseId, slug])
+  @@unique([courseId, position])
 }
 
 model Section {
   id       Int    @id @default(autoincrement())
   title    String
+  slug     String
   position Int
 
   chapterId Int
-  Chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
 
   lessons Lesson[]
+
+  @@unique([chapterId, slug])
+  @@unique([chapterId, position])
 }
 
 model Lesson {
   id          Int     @id @default(autoincrement())
   title       String
+  slug        String
   description String?
   videoUrl    String
   duration    Int?
@@ -56,4 +66,7 @@ model Lesson {
 
   sectionId Int
   section   Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+
+  @@unique([sectionId, slug])
+  @@unique([sectionId, position])
 }

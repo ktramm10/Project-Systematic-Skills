@@ -307,6 +307,25 @@ main {
   content: "";
 }
 
+.content-subheading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  color: #171717;
+  font-size: clamp(1.35rem, 2.4vw, 2rem);
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.content-subheading::after {
+  flex: 1 1 auto;
+  height: 1px;
+  min-width: 2rem;
+  background: #f0c3c6;
+  content: "";
+}
+
 .content-flex-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
@@ -423,6 +442,164 @@ main {
   color: #171717;
   font-weight: 800;
   background: #fff5f5;
+}
+
+.course-overview {
+  display: grid;
+  gap: 0.85rem;
+  max-width: 58rem;
+  margin-top: 1.5rem;
+}
+
+.course-overview-chapter {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #f0c3c6;
+  border-left: 0.35rem solid #d71920;
+  border-radius: 0.5rem;
+  box-shadow: 0 12px 28px rgb(23 23 23 / 7%);
+}
+
+.course-overview-chapter-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 3.4rem;
+  padding: 0.95rem 1.1rem;
+  color: #171717;
+  font: inherit;
+  font-weight: 900;
+  text-align: left;
+  background: #ffffff;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.course-overview-chapter-toggle::after {
+  flex: 0 0 auto;
+  width: 0.65rem;
+  height: 0.65rem;
+  margin-left: 1rem;
+  border-right: 0.15rem solid currentColor;
+  border-bottom: 0.15rem solid currentColor;
+  transform: rotate(45deg) translateY(-0.15rem);
+  transition: transform 160ms ease;
+  content: "";
+}
+
+.course-overview-chapter-toggle:hover,
+.course-overview-chapter-toggle:focus-visible {
+  color: #b5121b;
+  background: #fff5f5;
+  outline: 0;
+}
+
+.course-overview-chapter-toggle:focus-visible {
+  box-shadow: inset 0 0 0 2px #d71920;
+}
+
+.course-overview-chapter-toggle[aria-expanded="true"] {
+  color: #b5121b;
+  background: #fff5f5;
+  border-bottom: 1px solid #f0c3c6;
+}
+
+.course-overview-chapter-toggle[aria-expanded="true"]::after {
+  transform: rotate(-135deg) translateY(-0.15rem);
+}
+
+.course-overview-sections {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem 1.1rem 1.15rem;
+}
+
+.course-overview-section h3 {
+  margin: 0 0 0.65rem;
+  color: #171717;
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.course-overview-lessons {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.course-overview-lesson {
+  padding: 0.75rem 0.85rem;
+  color: #3f3f3f;
+  line-height: 1.5;
+  background: #ffffff;
+  border: 1px solid #f0c3c6;
+  border-radius: 0.45rem;
+}
+
+.course-overview-lesson::before {
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-right: 0.6rem;
+  vertical-align: 0.08rem;
+  background: #d71920;
+  border-radius: 999px;
+  content: "";
+}
+
+.content-price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin: clamp(1.75rem, 4vw, 2.5rem) 0 1rem;
+  padding: 0.85rem 1rem;
+  color: #171717;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 900;
+  line-height: 1;
+  background: #fff5f5;
+  border: 1px solid #f0c3c6;
+  border-left: 0.35rem solid #d71920;
+  border-radius: 0.5rem;
+  box-shadow: 0 12px 28px rgb(23 23 23 / 7%);
+}
+
+.purchase-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9rem;
+  margin: 0 0 0 1rem;
+  padding: 0.8rem 1.25rem;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 900;
+  line-height: 1;
+  background: #d71920;
+  border: 1px solid #d71920;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 18px rgb(215 25 32 / 22%);
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.purchase-button:hover,
+.purchase-button:focus-visible {
+  background: #b5121b;
+  border-color: #b5121b;
+  box-shadow: 0 12px 24px rgb(215 25 32 / 28%);
+  transform: translateY(-1px);
+}
+
+.purchase-button:focus-visible {
+  outline: 3px solid rgb(215 25 32 / 28%);
+  outline-offset: 3px;
 }
 
 .site-footer {
@@ -563,6 +740,33 @@ main {
   .content-copy,
   .content-list {
     font-size: 1rem;
+  }
+
+  .course-overview {
+    margin-top: 1.25rem;
+  }
+
+  .course-overview-chapter-toggle {
+    min-height: 3.1rem;
+    padding: 0.85rem 0.95rem;
+  }
+
+  .course-overview-sections {
+    padding: 0.85rem 0.95rem 1rem;
+  }
+
+  .content-price,
+  .purchase-button {
+    width: 100%;
+  }
+
+  .content-price {
+    justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .purchase-button {
+    margin-left: 0;
   }
 
   .footer-content {

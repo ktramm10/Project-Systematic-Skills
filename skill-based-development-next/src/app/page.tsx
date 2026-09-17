@@ -51,7 +51,7 @@ export default async function Home() {
           <h2>{course.name}</h2>
           <p>{course.description}</p>
           <p>${(course.priceCents / 100).toFixed(2)}</p>
-          <Link href={`/courses/${course.id}`}>View Course</Link>
+          <Link href={`/courses/${course.slug}`}>View Course</Link>
         </div>
       ))}
     </nav>
