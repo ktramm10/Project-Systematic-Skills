@@ -23,6 +23,8 @@ model Course {
   updatedAt   DateTime  @updatedAt
 
   chapters    Chapter[]
+  enrollments Enrollment[]
+  purchases   Purchase[]
 }
 
 model Chapter {
@@ -69,4 +71,51 @@ model Lesson {
 
   @@unique([sectionId, slug])
   @@unique([sectionId, position])
+}
+
+model User {
+  id             Int     @id @default(autoincrement())
+  email          String  @unique
+  passwordHash   String
+  firstName      String?
+  lastName       String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  enrollments Enrollment[]
+  purchases   Purchase[]
+}
+
+model Enrollment {
+  id          Int       @id @default(autoincrement())
+  userId      Int
+  courseId    Int
+  enrolledAt  DateTime  @default(now())
+
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course      Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+}
+
+model Purchase {
+  id          Int        @id @default(autoincrement())
+  userId      Int
+  courseId    Int
+  amount      Decimal
+  status      PurchaseStatus  @default(PENDING)
+
+  paymentId   String?
+  purchaseAt  DateTime    @default(now())
+
+  user        User        @relation(fields: [userId], references: [id])
+  course      Course      @relation(fields: [courseId], references: [id])
+}
+
+enum PurchaseStatus {
+  PENDING
+  COMPLETED
+  REFUNDED
+  FAILED
 }
