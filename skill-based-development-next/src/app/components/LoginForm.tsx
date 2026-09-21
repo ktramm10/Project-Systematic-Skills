@@ -5,24 +5,35 @@ export default function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
-    async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+    async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {0
         event.preventDefault();
         setError("");
+        setIsLoading(true);
 
-        const response = await fetch("/api/auth/login", {
+        try {
+            const response = await fetch("/api/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ email, password }),
-        });
+            });
 
-        if (!response.ok) {
-            setError("Invalid email or password.");
-            return;
+            if (!response.ok) {
+                setError("Invalid email or password.");
+                return;
+            }
+            window.location.href = "/account";
+
+        } catch (error) {
+            console.error(error);
+            setError("Something went wrong. Please try again.");
+        } finally {
+            setIsLoading(false);
         }
-        window.location.href = "/account";
+
     }
 
     return (
@@ -39,7 +50,7 @@ export default function LoginForm() {
 
             {error && <p className="login-error" role="alert">{error}</p>}
 
-            <button className="login-submit" type="submit">Log In</button>
+            <button className="login-submit" type="submit" disabled={isLoading}>{isLoading ? "Logging in..." : "Log In"}</button>
         </form>
     );
 };

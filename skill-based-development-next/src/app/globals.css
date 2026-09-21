@@ -68,7 +68,15 @@ body {
   position: relative;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+}
+
 .dropdown button,
+.logout,
 .login {
   display: inline-flex;
   align-items: center;
@@ -90,8 +98,17 @@ body {
   cursor: pointer;
 }
 
+.logout {
+  color: #b5121b;
+  background: #ffffff;
+  border: 1px solid #f0c3c6;
+  cursor: pointer;
+}
+
 .dropdown button:hover,
-.dropdown button:focus-visible {
+.dropdown button:focus-visible,
+.logout:hover,
+.logout:focus-visible {
   color: #b5121b;
   background: #fff5f5;
   border-color: #d71920;
@@ -101,7 +118,6 @@ body {
   color: #ffffff;
   background: #d71920;
   border: 1px solid #d71920;
-  margin-left: auto;
   box-shadow: 0 8px 18px rgb(215 25 32 / 24%);
 }
 
