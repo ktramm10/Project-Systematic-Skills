@@ -77,6 +77,7 @@ body {
 
 .dropdown button,
 .logout,
+.course-library,
 .login {
   display: inline-flex;
   align-items: center;
@@ -105,13 +106,26 @@ body {
   cursor: pointer;
 }
 
+.course-library {
+  color: #171717;
+  background: #fff5f5;
+  border: 1px solid #f0c3c6;
+}
+
 .dropdown button:hover,
 .dropdown button:focus-visible,
 .logout:hover,
-.logout:focus-visible {
+.logout:focus-visible,
+.course-library:hover,
+.course-library:focus-visible {
   color: #b5121b;
   background: #fff5f5;
   border-color: #d71920;
+}
+
+.course-library:hover,
+.course-library:focus-visible {
+  transform: translateY(-1px);
 }
 
 .login {
@@ -952,6 +966,361 @@ main {
   text-decoration-color: #d71920;
 }
 
+.account-page {
+  padding: clamp(2rem, 7vw, 5rem) clamp(1rem, 4vw, 3rem);
+  background:
+    linear-gradient(120deg, rgb(23 23 23 / 5%) 0 18%, transparent 18% 100%),
+    radial-gradient(circle at top right, rgb(215 25 32 / 12%), transparent 32rem),
+    linear-gradient(135deg, #fff5f5 0%, #ffffff 48%, #f7f7f7 100%);
+}
+
+.account-shell {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  width: min(100%, 72rem);
+  margin: 0 auto;
+}
+
+.account-hero {
+  max-width: 48rem;
+}
+
+.account-eyebrow {
+  display: inline-flex;
+  margin: 0 0 1rem;
+  padding: 0.45rem 0.7rem;
+  color: #8f0f16;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #ffffff;
+  border: 1px solid #f0c3c6;
+  border-radius: 999px;
+}
+
+.account-heading {
+  margin: 0;
+  color: #171717;
+  font-size: clamp(2.35rem, 5vw, 4.5rem);
+  font-weight: 900;
+  line-height: 0.98;
+}
+
+.account-heading::after {
+  display: block;
+  width: clamp(4rem, 10vw, 7rem);
+  height: 0.35rem;
+  margin-top: 1rem;
+  background: #d71920;
+  border-radius: 999px;
+  content: "";
+}
+
+.account-summary {
+  max-width: 34rem;
+  margin: 1.25rem 0 0;
+  color: #4b4b4b;
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  line-height: 1.7;
+}
+
+.account-grid {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 1.5rem);
+  align-items: start;
+}
+
+.account-panel {
+  padding: clamp(1.15rem, 3vw, 1.6rem);
+  background: #ffffff;
+  border: 1px solid #f0c3c6;
+  border-top: 0.35rem solid #d71920;
+  border-radius: 0.5rem;
+  box-shadow: 0 22px 50px rgb(23 23 23 / 11%);
+}
+
+.account-sub-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 1.1rem;
+  color: #171717;
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.account-sub-heading::after {
+  flex: 1 1 auto;
+  height: 1px;
+  min-width: 2rem;
+  background: #f0c3c6;
+  content: "";
+}
+
+.account-user-information-container,
+.account-purchase-history-container {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.account-user-information-text {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0.9rem 1rem;
+  color: #171717;
+  font-weight: 800;
+  line-height: 1.4;
+  background: #fffafa;
+  border: 1px solid #f0c3c6;
+  border-left: 0.32rem solid #d71920;
+  border-radius: 0.5rem;
+}
+
+.account-user-information-text span {
+  color: #6d4549;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.account-user-details-edit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  margin-top: 0.15rem;
+  padding: 0.8rem 1rem;
+  color: #ffffff;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  background: #d71920;
+  border: 1px solid #d71920;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 22px rgb(215 25 32 / 22%);
+  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.account-user-details-edit-button:hover,
+.account-user-details-edit-button:focus-visible {
+  color: #ffffff;
+  background: #b5121b;
+  border-color: #b5121b;
+  box-shadow: 0 14px 28px rgb(215 25 32 / 28%);
+  outline: 0;
+  transform: translateY(-1px);
+}
+
+.account-user-details-edit-button:focus-visible {
+  outline: 3px solid rgb(215 25 32 / 28%);
+  outline-offset: 3px;
+}
+
+.account-purchase-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  background: #ffffff;
+  border: 1px solid #f0c3c6;
+  border-left: 0.32rem solid #d71920;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 24px rgb(23 23 23 / 7%);
+}
+
+.account-purchase-card h3 {
+  margin: 0;
+  color: #171717;
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.account-purchase-card p {
+  margin: 0.35rem 0 0;
+  color: #6d4549;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.account-purchase-meta {
+  display: grid;
+  justify-items: end;
+  gap: 0.45rem;
+  flex: 0 0 auto;
+}
+
+.account-purchase-meta strong {
+  color: #171717;
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.account-purchase-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: 0.35rem 0.6rem;
+  color: #6d4549;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #fff5f5;
+  border: 1px solid #f0c3c6;
+  border-radius: 999px;
+}
+
+.account-purchase-status-completed {
+  color: #136f3d;
+  background: #eefbf3;
+  border-color: #bce8cc;
+}
+
+.account-purchase-status-failed,
+.account-purchase-status-refunded {
+  color: #8f0f16;
+}
+
+.account-empty-state {
+  margin: 0;
+  padding: 1rem;
+  color: #6d4549;
+  font-weight: 750;
+  line-height: 1.6;
+  background: #fffafa;
+  border: 1px dashed #f0c3c6;
+  border-radius: 0.5rem;
+}
+
+.edit-user-page {
+  display: grid;
+  place-items: start center;
+  padding: clamp(2rem, 7vw, 5rem) clamp(1rem, 4vw, 3rem);
+  background:
+    radial-gradient(circle at top left, rgb(215 25 32 / 12%), transparent 31rem),
+    linear-gradient(135deg, #ffffff 0%, #fff5f5 54%, #f7f7f7 100%);
+}
+
+.edit-user-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(21rem, 0.72fr);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: center;
+  width: min(100%, 66rem);
+}
+
+.edit-user-intro {
+  max-width: 38rem;
+}
+
+.edit-user-panel {
+  padding: clamp(1.25rem, 4vw, 2rem);
+  background: #ffffff;
+  border: 1px solid #f0c3c6;
+  border-top: 0.35rem solid #d71920;
+  border-radius: 0.5rem;
+  box-shadow: 0 24px 54px rgb(23 23 23 / 13%);
+}
+
+.user-edit-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.user-edit-field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.user-edit-field label {
+  color: #171717;
+  font-weight: 850;
+}
+
+.user-edit-field input {
+  width: 100%;
+  min-height: 3.1rem;
+  padding: 0.85rem 0.95rem;
+  color: #171717;
+  font: inherit;
+  background: #ffffff;
+  border: 1px solid #f0c3c6;
+  border-radius: 0.5rem;
+  outline: 0;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.user-edit-field input::placeholder {
+  color: #9a7074;
+}
+
+.user-edit-field input:hover,
+.user-edit-field input:focus {
+  background: #fffafa;
+  border-color: #d71920;
+  box-shadow: 0 0 0 3px rgb(215 25 32 / 12%);
+}
+
+.edit-user-error {
+  margin: 0;
+  padding: 0.8rem 0.9rem;
+  color: #8f0f16;
+  font-weight: 800;
+  line-height: 1.5;
+  background: #fff5f5;
+  border: 1px solid #f0c3c6;
+  border-left: 0.3rem solid #d71920;
+  border-radius: 0.5rem;
+}
+
+.edit-user-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.1rem;
+  padding: 0.85rem 1.1rem;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 900;
+  background: #d71920;
+  border: 1px solid #d71920;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 22px rgb(215 25 32 / 24%);
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.edit-user-submit:hover,
+.edit-user-submit:focus-visible {
+  background: #b5121b;
+  border-color: #b5121b;
+  box-shadow: 0 14px 28px rgb(215 25 32 / 30%);
+  transform: translateY(-1px);
+}
+
+.edit-user-submit:focus-visible {
+  outline: 3px solid rgb(215 25 32 / 28%);
+  outline-offset: 3px;
+}
+
+.edit-user-submit:disabled {
+  background: #bf777b;
+  border-color: #bf777b;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .site-footer {
   color: #171717;
   background:
@@ -1131,6 +1500,23 @@ main {
 
   .login-container,
   .create-account-container {
+    grid-template-columns: 1fr;
+  }
+
+  .account-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .account-purchase-card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .account-purchase-meta {
+    justify-items: start;
+  }
+
+  .edit-user-shell {
     grid-template-columns: 1fr;
   }
 
