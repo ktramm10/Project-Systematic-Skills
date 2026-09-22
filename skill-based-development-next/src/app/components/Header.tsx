@@ -18,10 +18,15 @@ export default async function Header() {
 
       <div className="header-actions">
         {isLoggedIn && <LogOutButton />}
+        {isLoggedIn && (
+          <Link className="course-library" href="/course-library">Course Library</Link>
+        )}
         <Link className="login" href={isLoggedIn ? "/account" : "/login"}>
           {isLoggedIn ? "Account" : "Login"}
         </Link>
       </div>
+
+
       
     </header>
   );
