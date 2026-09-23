@@ -47,7 +47,7 @@ async function main() {
                                             description:
                                               "Learn the fundamental principles of the half guard.",
                                             videoUrl:
-                                              "/videos/half-guard-perspective-1.mp4",
+                                              "/content/video/website-placeholder-video.mp4",
                                             duration: 0,
                                             position: 1,
                                         },
@@ -57,7 +57,7 @@ async function main() {
                                             description:
                                               "Learn how to create the angle for the armbar.",
                                             videoUrl:
-                                              "/videos/half-guard-perspective-2.mp4",
+                                              "/content/video/website-placeholder-video.mp4",
                                             duration: 0,
                                             position: 2,
                                         },
@@ -67,7 +67,7 @@ async function main() {
                                             description:
                                               "Learn how to recover from a bad position in the half guard.",
                                             videoUrl:
-                                              "/videos/recovering-from-disaster.mp4",
+                                              "/content/video/website-placeholder-video.mp4",
                                             duration: 0,
                                             position: 3,
                                         },
@@ -77,7 +77,7 @@ async function main() {
                                             description:
                                               "Learn the three main approaches to launching effective attacks from the half guard.",
                                             videoUrl:
-                                              "/videos/3-paths-to-effective-offense-in-the-half-guard.mp4",
+                                              "/content/video/website-placeholder-video.mp4",
                                             duration: 0,
                                             position: 4,
                                         },
@@ -87,7 +87,7 @@ async function main() {
                                             description:
                                               "Explore the pros and cons of playing the half guard.",
                                             videoUrl:
-                                              "/videos/should-you-play-the-half-guard.mp4",
+                                              "/content/video/website-placeholder-video.mp4",
                                             duration: 0,
                                             position: 5,
                                         }
