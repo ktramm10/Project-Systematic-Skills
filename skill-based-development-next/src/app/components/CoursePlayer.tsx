@@ -32,18 +32,6 @@ export default function CoursePlayer({course}: CoursePlayerProps) {
     const hasNextLesson = currentLessonIndex >= 0 && currentLessonIndex < lessons.length - 1;
 
     useEffect(() => {
-        setActiveVideoUrl(currentLesson?.videoUrl ?? "");
-        setVideoError(false);
-        setIsPlaying(false);
-        setCurrentTime(0);
-        setDuration(0);
-
-        if (videoRef.current) {
-            videoRef.current.currentTime = 0;
-        }
-    }, [currentLesson]);
-
-    useEffect(() => {
         const video = videoRef.current;
         if (!video || !activeVideoUrl || !shouldAutoplayRef.current) return;
 
@@ -136,17 +124,30 @@ export default function CoursePlayer({course}: CoursePlayerProps) {
 
     function nextLesson() {
         if (!hasNextLesson) return;
-        setCurrentLesson(lessons[currentLessonIndex + 1]);
+        changeLesson(lessons[currentLessonIndex + 1]);
     }
 
     function previousLesson() {
         if (!hasPreviousLesson) return;
-        setCurrentLesson(lessons[currentLessonIndex - 1]);
+        changeLesson(lessons[currentLessonIndex - 1]);
+    }
+
+    function changeLesson(lesson: Lesson) {
+        setCurrentLesson(lesson);
+        setActiveVideoUrl(lesson.videoUrl);
+        setVideoError(false);
+        setIsPlaying(false);
+        setCurrentTime(0);
+        setDuration(0);
+
+        if (videoRef.current) {
+            videoRef.current.currentTime = 0;
+        }
     }
 
     function selectLesson(lesson: Lesson) {
         shouldAutoplayRef.current = true;
-        setCurrentLesson(lesson);
+        changeLesson(lesson);
     }
 
     function handleVideoError() {
@@ -176,7 +177,10 @@ export default function CoursePlayer({course}: CoursePlayerProps) {
                             ref={videoRef}
                             src={activeVideoUrl}
                             className="video"
-                            controls
+                            playsInline
+                            preload="metadata"
+                            controlsList="nodownload noplaybackrate noremoteplayback"
+                            disablePictureInPicture
                             onEnded={nextLesson}
                             onError={handleVideoError}
                             onPlay={() => setIsPlaying(true)}

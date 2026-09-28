@@ -22,6 +22,7 @@ model Course {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
+  tags        CourseTag[] @default([])
   chapters    Chapter[]
   enrollments Enrollment[]
   purchases   Purchase[]
@@ -118,4 +119,20 @@ enum PurchaseStatus {
   COMPLETED
   REFUNDED
   FAILED
+}
+
+enum CourseTag {
+  FUNDAMENTALS
+  SOLO_DRILLS
+  CLOSED_GUARD
+  HALF_GUARD
+  OPEN_GUARD
+  SIDE_CONTROL
+  MOUNT
+  BACK_CONTROL
+  KNEE_ON_BELLY
+  NORTH_SOUTH
+  TURTLE
+  GUARD_PASSING
+  ESCAPES
 }

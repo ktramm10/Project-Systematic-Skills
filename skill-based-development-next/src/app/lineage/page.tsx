@@ -1,4 +1,6 @@
 
+import Image from "next/image";
+
 
 export default function Lineage() {
 return (
@@ -34,10 +36,12 @@ return (
     <h2 className="content-heading">Lineage Map</h2>
 
     <div className="lineage-image-container">
-      <img
+      <Image
         className="lineage-image"
         src="/content/images/skill-based-development-lineage-image.png"
         alt="Brazilian Jiu-Jitsu lineage map"
+        width={1200}
+        height={800}
       />
     </div>
   </section>

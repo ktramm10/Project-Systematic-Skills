@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import prisma from "@/lib/prisma";
+import SearchBar from "../components/SearchBar";
 import {verifySession} from "@/lib/auth";
 
 export default async function CourseLibraryPage() {
@@ -25,16 +26,16 @@ export default async function CourseLibraryPage() {
             <section className="library-shell">
                 <div className="library-heading-group">
                     <h1 className="library-heading">Your Course Library</h1>
-                    <p className="library-intro">
-                        Pick up where you left off and keep your training organized in one place.
-                    </p>
+
                 </div>
 
                 <div className="library-stat" aria-label={`${courseCount} enrolled courses`}>
                     <span>{courseCount}</span>
                     <p>{courseCount === 1 ? "Course Ready" : "Courses Ready"}</p>
                 </div>
-
+                <div className="library-search">
+                    <SearchBar scope="owned" resultHrefPrefix="/course-library/viewer" />
+                </div>
                 {courseCount > 0 ? (
                     <div className="library-course-container">
                         {courses.map((course) => (

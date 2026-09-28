@@ -1,0 +1,5 @@
+-- CreateEnum
+CREATE TYPE "CourseTags" AS ENUM ('CLOSED_GUARD', 'HALF_GUARD', 'OPEN_GUARD', 'SIDE_CONTROL', 'MOUNT', 'BACK_CONTROL', 'TURTLE', 'GUARD_PASSING', 'ESCAPES');
+
+-- AlterTable
+ALTER TABLE "Course" ADD COLUMN     "tags" "CourseTags"[];

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import prisma from "@/lib/prisma";
 
 async function getCourses() {
@@ -14,7 +15,7 @@ export default async function Fundamentals() {
                 <div className="content-flex-container">
                     {courses.map((course) => (
                         <div key={course.id} className="content-card">
-                            <img src={course.thumbnail} alt={course.name} />
+                            <Image src={course.thumbnail} alt={course.name} width={320} height={180} />
                             <h2>{course.name}</h2>
                             <p>{course.description}</p>
                             <p>${(course.priceCents / 100).toFixed(2)}</p>

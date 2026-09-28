@@ -15,7 +15,7 @@ export default function loginPage() {
                 <div className="login-panel">
                     <LoginForm />
 
-                    <p className="create-account-text">Don't have an account? <Link href="/create-account" className="create-account-link">Create one</Link></p>
+                    <p className="create-account-text">Don&apos;t have an account? <Link href="/create-account" className="create-account-link">Create one</Link></p>
                 </div>
             </section>
         </main>
