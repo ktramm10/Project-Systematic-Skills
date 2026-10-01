@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-type DropdownName = "courses" | "about";
+type DropdownName = "courses" | "about" | "more";
 
 export default function HeaderDropdowns() {
   const [openDropdown, setOpenDropdown] = useState<DropdownName | null>(null);
@@ -50,6 +50,17 @@ export default function HeaderDropdowns() {
           </div>
         )}
       </div>
+
+      <div className="dropdown">
+        <button onClick={() => toggleDropdown("more")}>More ▼</button>
+
+        {openDropdown === "more" && (
+          <div className="dropdown-content">
+            <Link href="/user-guide" onClick={clearDropdown}>User Guide</Link>
+            <Link href="/privacy-policy" onClick={clearDropdown}>Privacy Policy</Link>
+          </div>
+        )}
+        </div>
     </nav>
   );
 }

@@ -66,22 +66,45 @@ export default function CategoriesPage() {
 
     return (
         <main className="categories-page">
-            <section className="categories-container">
-                {categories.map((category) => (
-                    <AddToFilterButton
-                    key={category.tag}
-                    courseFilters={filter}
-                    setCourseFilters={setFilter}
-                    courseTag={category.tag}
-                    courseTagLabel={category.label}
-                    />
-                ))}
-                <ClearFiltersButton courseFilters={filter} setCourseFilters={setFilter}/>
+            <section className="categories-hero">
+                <div className="categories-heading-group">
+
+                    <h1 className="categories-heading">Browse Courses by Category</h1>
+                    <p className="categories-intro">
+                        Choose one or more areas to find courses that match your training focus.
+                    </p>
+                </div>
+            </section>
+
+            <section className="categories-filter-panel" aria-label="Course category filters">
+                <div className="categories-container">
+                    {categories.map((category) => (
+                        <AddToFilterButton
+                        key={category.tag}
+                        courseFilters={filter} 
+                        setCourseFilters={setFilter}
+                        courseTag={category.tag}
+                        courseTagLabel={category.label}
+                        />
+                    ))}
+                    <ClearFiltersButton courseFilters={filter} setCourseFilters={setFilter}/>
+                </div>
             </section>
 
             <section className="category-results-section">
+                <div className="category-results-heading">
+                    <h2>{filter.length > 0 ? "Matching Courses" : "Choose a Category"}</h2>
+                    <p>
+                        {filter.length > 0
+                            ? `${courses.length} ${courses.length === 1 ? "course" : "courses"} found for your current filters.`
+                            : "Your course matches will appear here once a filter is selected."}
+                    </p>
+                </div>
                 {loading && <p className="category-results-message">Loading courses...</p>}
                 {!loading && error && <p className="category-results-message">{error}</p>}
+                {!loading && !error && filter.length === 0 && (
+                    <p className="category-results-message">Start with a category like Half Guard, Fundamentals, or Solo Drills.</p>
+                )}
                 {!loading && !error && filter.length > 0 && courses.length === 0 && (
                     <p className="category-results-message">No courses match those filters.</p>
                 )}
