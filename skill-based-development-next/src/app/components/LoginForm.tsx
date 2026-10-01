@@ -28,6 +28,7 @@ export default function LoginForm() {
                 return;
             }
             router.push("/account");
+            router.refresh();
 
         } catch (error) {
             console.error(error);

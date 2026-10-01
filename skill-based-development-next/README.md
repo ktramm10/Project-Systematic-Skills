@@ -16,6 +16,26 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Stripe Checkout
+
+This app uses Stripe Checkout for one-time course purchases. The purchase button creates a Checkout Session on the server and redirects the user to Stripe-hosted Checkout. Course access is granted from the Stripe webhook after payment succeeds.
+
+Required local environment variables:
+
+```bash
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+STRIPE_SECRET_KEY="rk_test_or_sk_test_replace_me"
+STRIPE_WEBHOOK_SECRET="whsec_replace_me"
+```
+
+Use a restricted API key (`rk_`) when possible. For local webhook testing, forward Stripe events to:
+
+```bash
+stripe listen --forward-to localhost:3000/api/stripe/webhook
+```
+
+Then copy the generated `whsec_...` value into `STRIPE_WEBHOOK_SECRET`.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
