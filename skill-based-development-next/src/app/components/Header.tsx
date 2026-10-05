@@ -1,4 +1,5 @@
 // components/Header.tsx
+import Image from "next/image";
 import Link from "next/link";
 import {getSession} from "@/lib/session";
 import LogOutButton from "./LogoutButton";
@@ -10,7 +11,15 @@ export default async function Header() {
     return (
     <header className="main-header">
       <Link className="website-name" href="/">
-        Skill Based Development
+        <Image
+          className="site-logo"
+          src="/content/images/skill-based-development-icon.png"
+          alt="Skill Based Development mark"
+          width={32}
+          height={32}
+          priority
+        />
+        <span>Skill Based Development</span>
       </Link>
       
       <HeaderDropdowns />

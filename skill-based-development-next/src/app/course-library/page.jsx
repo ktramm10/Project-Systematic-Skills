@@ -4,6 +4,8 @@ import prisma from "@/lib/prisma";
 import SearchBar from "../components/SearchBar";
 import {verifySession} from "@/lib/auth";
 
+const COURSE_IMAGE_FALLBACK = "/content/images/courses/fundamentals-of-closed-guard.jfif";
+
 export default async function CourseLibraryPage() {
     function truncateText(text, maxLength) {
         if (!text) return "";
@@ -41,7 +43,7 @@ export default async function CourseLibraryPage() {
                         {courses.map((course) => (
                             <article key={course.id} className="content-card library-course-card">
                                 <Image
-                                    src={course.thumbnail}
+                                    src={course.thumbnail || COURSE_IMAGE_FALLBACK}
                                     alt={course.name}
                                     width={640}
                                     height={360}

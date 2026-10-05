@@ -1,6 +1,7 @@
 "use client";
 
 import {useState} from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 type SearchResult = {
@@ -15,6 +16,8 @@ type SearchBarProps = {
     scope?: "all" | "owned";
     resultHrefPrefix?: "/courses" | "/course-library/viewer";
 }
+
+const COURSE_IMAGE_FALLBACK = "/content/images/courses/fundamentals-of-closed-guard.jfif";
 
 export default function SearchBar({ scope = "all", resultHrefPrefix = "/courses" }: SearchBarProps) {
     const [query, setQuery] = useState("");
@@ -69,7 +72,7 @@ export default function SearchBar({ scope = "all", resultHrefPrefix = "/courses"
 
                     {!loading && results.map((course) => (
                         <Link key={course.id} href={`${resultHrefPrefix}/${course.slug}`} className="search-result">
-                            <img src={course.thumbnail} alt={course.name} />
+                            <Image src={course.thumbnail || COURSE_IMAGE_FALLBACK} alt={course.name} width={96} height={64} />
                             <div>
                                 <h3>{course.name}</h3>
                                 <p>{course.description}</p>

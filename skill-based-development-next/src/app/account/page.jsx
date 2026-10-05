@@ -1,9 +1,22 @@
 import {verifySession} from "@/lib/auth";
 import Link from "next/link";
 import prisma from "@/lib/prisma";
+import { stripe } from "@/lib/stripe";
+import { fulfillCheckoutSession } from "@/lib/fulfillCheckout";
 
-export default async function AccountPage() {
+export default async function AccountPage({ searchParams }) {
     const session = await verifySession();
+    const resolvedSearchParams = await searchParams;
+    const checkoutSessionId = resolvedSearchParams?.session_id;
+
+    if (typeof checkoutSessionId === "string") {
+        const checkoutSession = await stripe.checkout.sessions.retrieve(checkoutSessionId);
+
+        if (checkoutSession.metadata?.userId === String(session.userId)) {
+            await fulfillCheckoutSession(checkoutSession);
+        }
+    }
+
     const [user, purchases] = await Promise.all([
         prisma.user.findUnique({
             where: {
@@ -74,7 +87,7 @@ export default async function AccountPage() {
                                         </div>
                                         <div className="account-purchase-meta">
                                             <span className={`account-purchase-status account-purchase-status-${purchase.status.toLowerCase()}`}>{purchase.status.toLowerCase()}</span>
-                                            <strong>${Number(purchase.amount).toFixed(2)}</strong>
+                                            <strong>${(Number(purchase.amount) / 100).toFixed(2)}</strong>
                                         </div>
                                     </article>
                                 ))
