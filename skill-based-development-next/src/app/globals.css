@@ -820,6 +820,93 @@ main {
   border-radius: 1rem;
 }
 
+/* Added: login resend row */
+.login-resend {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+.login-resend .resend-button {
+  width: fit-content;
+}
+.login-resend-msg {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* Secondary button for resend */
+.resend-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.85rem;
+  padding: 0.8rem 1.15rem;
+  color: var(--foreground);
+  font-weight: 750;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  box-shadow: none;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+.resend-button:hover,
+.resend-button:focus-visible {
+  background: var(--soft);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Added: account create success panel */
+.account-create-success {
+  max-width: 42rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  margin-top: 0.75rem;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(18px);
+}
+.account-create-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+}
+.account-create-resend-msg {
+  margin-top: 0.6rem;
+  color: var(--muted);
+}
+
+/* Added: verify email page styles */
+.verify-email-page {
+  max-width: 42rem;
+  margin: 1.25rem auto;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(18px);
+}
+.verify-email-page h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.6rem;
+  letter-spacing: -0.04em;
+}
+.verify-email-page p {
+  margin: 0.5rem 0 0.75rem;
+  color: var(--muted);
+}
+.verify-email-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+}
+
 .create-account-text {
   margin: 1.25rem 0 0;
   color: var(--muted);
@@ -1346,6 +1433,22 @@ main {
 
 .footer-section a:hover {
   color: var(--foreground);
+}
+
+.ai-disclosure-notice {
+  margin-top: 1.5rem;
+  padding: 0.9rem 1rem;
+  color: var(--accent-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  background: rgba(31, 41, 55, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+}
+
+.ai-disclosure-notice strong {
+  color: var(--foreground);
+  font-weight: 780;
 }
 
 .footer-bottom {

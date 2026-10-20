@@ -11,10 +11,14 @@ export default function CreateAccountForm() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
-    
+    const [created, setCreated] = useState(false);
+    const [resendMsg, setResendMsg] = useState<string | null>(null);
+    const [isResending, setIsResending] = useState(false);
+
     async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
         event.preventDefault();
         setError("");
+        setResendMsg(null);
         
         if (password !== confirmPassword) {
             setError("Passwords do not match.");
@@ -38,17 +42,63 @@ export default function CreateAccountForm() {
 
             const data = await response.json();
             if (!response.ok) {
-                // need a specific response based on the error that occurred
                 setError(data.error ?? "Unable to create account.");
                 return;
             }
-            router.push("/login");
+            // Show verification notice instead of redirecting
+            setCreated(true);
         } catch (error) {
             console.error(error);
             setError("Something went wrong. Please try again.");
         } finally {
             setIsLoading(false);
         }
+    }
+
+    async function handleResend() {
+        setIsResending(true);
+        setResendMsg(null);
+        try {
+            const res = await fetch("/api/auth/resend-verification", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email }),
+            });
+            if (!res.ok) {
+                const data = await res.json().catch(() => ({}));
+                setResendMsg(data.error ?? "Unable to resend verification email.");
+                return;
+            }
+            const data = await res.json().catch(() => ({}));
+            if (data?.devVerificationUrl) {
+                setResendMsg(`Verification email sent. Dev URL: ${data.devVerificationUrl}`);
+            } else {
+                setResendMsg("Verification email sent. Please check your inbox.");
+            }
+        } catch (e) {
+            console.error(e);
+            setResendMsg("Unable to resend verification email.");
+        } finally {
+            setIsResending(false);
+        }
+    }
+
+    if (created) {
+        return (
+            <div className="account-create-success" role="status">
+                <h2>Account created!</h2>
+                <p>
+                    We sent a verification link to <strong>{email}</strong>. Please verify your email to log in.
+                </p>
+                <div className="account-create-actions">
+                    <button className="account-create-submit" type="button" onClick={handleResend} disabled={isResending}>
+                        {isResending ? "Resending..." : "Resend verification email"}
+                    </button>
+                    <button className="login-submit" type="button" onClick={() => router.push("/login")}>Go to Login</button>
+                </div>
+                {resendMsg && <p className="account-create-resend-msg">{resendMsg}</p>}
+            </div>
+        );
     }
 
     return (

@@ -1,5 +1,7 @@
 import prisma from "@/lib/prisma";
 import argon2 from "argon2";
+import { createVerificationToken } from "@/lib/verification";
+import { sendEmail } from "@/lib/email";
 
 export async function POST(request: Request) {
     try {
@@ -65,6 +67,39 @@ export async function POST(request: Request) {
             passwordHash: passwordHash,
         },
     });
+
+    const token = await createVerificationToken(user.id);
+
+    const verificationUrl = new URL(
+    "/verify-email",
+    process.env.NEXT_PUBLIC_APP_URL!
+    );
+
+    verificationUrl.searchParams.set("token", token);
+
+    await sendEmail(
+        user.email,
+        "Verify your Skill Based Development account",
+        `
+        <h2>Welcome to Skill Based Development!</h2>
+
+        <p>
+            Please verify your email address to
+            finish setting up your account.
+        </p>
+
+        <a href="${verificationUrl.toString()}">
+            Verify Email Address
+        </a>
+
+        <p>This link expires in 24 hours.</p>
+
+        <p>
+            If you didn't create this account,
+            you can ignore this email.
+        </p>
+    `
+    );
 
 
     return Response.json(

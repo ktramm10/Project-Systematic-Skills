@@ -30,6 +30,10 @@ return (
     </div>
   </div>
 
+  <div className="ai-disclosure-notice" role="note">
+    <strong>AI Transparency Notice:</strong> This website was created with assistance from AI tools. Published content and site information are reviewed and maintained by the site owner.
+  </div>
+
   <div className="footer-bottom">
     <p>&copy; 2026 Skill Based Development. All rights reserved.</p>
   </div>

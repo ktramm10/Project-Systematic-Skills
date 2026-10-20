@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma"
 import argon2 from "argon2"
 import {createSession} from "@/lib/session";
+import error from "next/dist/api/error";
 
 export async function POST(request: Request) {
     try {
@@ -43,6 +44,13 @@ export async function POST(request: Request) {
             return Response.json(
                 { error: "Invalid email or password."},
                 { status: 401}
+            );
+        }
+
+        if (!user.emailVerified) {
+            return Response.json(
+                { error: "Please verify your email before logging in." },
+                { status: 403 }
             );
         }
 
