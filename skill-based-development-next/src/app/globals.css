@@ -761,14 +761,16 @@ main {
 
 .login-field,
 .account-create-field,
-.user-edit-field {
+.user-edit-field,
+.change-password-field {
   display: grid;
   gap: 0.45rem;
 }
 
 .login-field label,
 .account-create-field label,
-.user-edit-field label {
+.user-edit-field label,
+.change-password-field label {
   color: var(--foreground);
   font-size: 0.9rem;
   font-weight: 720;
@@ -776,7 +778,8 @@ main {
 
 .login-field input,
 .account-create-field input,
-.user-edit-field input {
+.user-edit-field input,
+.change-password-field input {
   min-height: 3.1rem;
   padding: 0.85rem 1rem;
   color: var(--foreground);
@@ -787,15 +790,58 @@ main {
 
 .login-field input:focus,
 .account-create-field input:focus,
-.user-edit-field input:focus {
+.user-edit-field input:focus,
+.change-password-field input:focus {
   border-color: rgba(31, 41, 55, 0.42);
   box-shadow: 0 0 0 4px rgba(31, 41, 55, 0.08);
   outline: 0;
 }
 
-.account-create-field small {
+.account-create-field small,
+.change-password-field small {
   color: var(--muted);
   font-size: 0.82rem;
+}
+
+.change-password-form,
+.change-password-step {
+  display: grid;
+  gap: 1rem;
+}
+
+.change-password-step > p,
+.change-password-complete > p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.change-password-status {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.change-password-secondary-button {
+  width: fit-content;
+  padding: 0;
+  color: var(--foreground);
+  font: inherit;
+  text-decoration: underline;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.change-password-back-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--muted);
+}
+
+.change-password-complete {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
 }
 
 .login-submit,
@@ -1100,6 +1146,17 @@ main {
 .account-user-details-edit-button {
   width: fit-content;
   margin-top: 0.25rem;
+}
+
+.account-user-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.25rem;
+}
+
+.account-user-actions .account-user-details-edit-button {
+  margin-top: 0;
 }
 
 .account-purchase-card {

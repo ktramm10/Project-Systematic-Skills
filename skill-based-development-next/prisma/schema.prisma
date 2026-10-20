@@ -89,6 +89,7 @@ model User {
 
   emailVerified Boolean  @default(false)
   verificationTokens EmailVerificationToken[]
+  passwordResets PasswordReset[]
 }
 
 model Enrollment {
@@ -125,6 +126,19 @@ model EmailVerificationToken {
   userId      Int
   user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime    @default(now())
+
+  @@index([userId])
+}
+
+model PasswordReset {
+  id  String  @id@default(cuid())
+  userId Int 
+  codeHash  String
+  expiresAt DateTime
+  attempts  Int @default(0)
+  verifiedAt DateTime?
+  createdAt DateTime  @default(now())
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }

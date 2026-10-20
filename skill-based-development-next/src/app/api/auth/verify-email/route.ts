@@ -21,7 +21,14 @@ async function verifyWithToken(token: string) {
       await tx.emailVerificationToken.deleteMany({ where: { userId: record.userId } });
       return true;
     });
-    return { ok: true, status: 200 as const, body: { verified } };
+    if (!verified) {
+      return {
+        ok: false,
+        status: 400 as const,
+        body: { error: "Verification token is invalid or expired." },
+      };
+    }
+    return { ok: true, status: 200 as const, body: { verified: true } };
   } catch {
     return { ok: false, status: 500 as const, body: { error: "Failed to verify email." } };
   }

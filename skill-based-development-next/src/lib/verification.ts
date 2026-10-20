@@ -6,7 +6,7 @@ export async function createVerificationToken(userId: number) {
     const token = randomBytes(32).toString("hex");
     const tokenHash = createHash("sha256").update(token).digest("hex");
 
-    const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 hour from now
+    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
     await prisma.$transaction([
         prisma.emailVerificationToken.deleteMany({

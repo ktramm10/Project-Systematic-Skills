@@ -71,7 +71,10 @@ export default async function AccountPage({ searchParams }) {
                             <p className="account-user-information-text"><span>First Name</span>{user.firstName || "Not provided"}</p>
                             <p className="account-user-information-text"><span>Last Name</span>{user.lastName || "Not provided"}</p>
                             <p className="account-user-information-text"><span>Email Address</span>{user.email}</p>
-                            <Link className="account-user-details-edit-button" href="/account/edit-user-details">Edit User Information</Link>
+                            <div className="account-user-actions">
+                                <Link className="account-user-details-edit-button" href="/account/edit-user-details">Edit User Information</Link>
+                                <Link className="account-user-details-edit-button" href="/account/change-password">Change Password</Link>
+                            </div>
                         </div>
                     </section>
 
